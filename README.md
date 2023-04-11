@@ -119,8 +119,8 @@ Follow ECK documentation for snapshot, dashboard and home page ECK https://docs.
 
 
 # Application Deployment
-3. skaf-demo-03-app (https://app.terraform.io/app/squareops-technologies/workspaces/skaf-demo-03-app)
-This job deploys the sample app ( roboshop ) to running cluster. Predefined endpoint is [d]
+skaf-demo-03-app (https://app.terraform.io/app/squareops-technologies/workspaces/skaf-demo-03-app)
+This job deploys the sample app ( roboshop ) to running cluster. Predefined endpoint is 
 Deploy the load test service also to demonstrate system under nominal load
 
 Add DB Dump
@@ -128,8 +128,10 @@ MongoDB
 1. Execute Shell in mongodb-0 pod using Rancher (http://rancher.demo.skaf.squareops.in)
   
 
-Execute following commands in the shell:
+Execute following commands in the shell
+
 2. Run command in mongo db shell
+
 
 curl -o /tmp/catalogue.js https://raw.githubusercontent.com/instana/robot-shop/master/mongo/catalogue.js 
 
@@ -139,108 +141,28 @@ mongo --host mongodb-headless.mongodb.svc.cluster.local -u root -p --authenticat
 
 mongo --host mongodb-headless.mongodb.svc.cluster.local -u root -p --authenticationDatabase admin < /tmp/users.js
 
-1. Enter password (get password from AWS Secrets Manager’s secret dev/squareops/mongodb)
-
+* Enter password (get password from AWS Secrets Manager’s secret dev/squareops/mongodb)
 
 I have no name!@mongodb-0:/$ mongo --host mongodb-headless.mongodb.svc.cluster.local -u root -p  neni5xFCLUBJ0Ui0pfor --authenticationDatabase admin < /tmp/users.js
+
 MongoDB shell version v5.0.8
+
 connecting to: mongodb://mongodb-headless.mongodb.svc.cluster.local:27017/?authSource=admin&compressors=disabled&gssapiServiceName=mongodb
+
 Implicit session: session { "id" : UUID("e161306c-0236-4ba9-9954-126cca6d69eb") }
+
 MongoDB server version: 5.0.8
+
 ================
+
 Warning: the "mongo" shell has been superseded by "mongosh",
-which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
-an upcoming release.
+
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in an upcoming release.
+
 For installation instructions, see
 https://docs.mongodb.com/mongodb-shell/install/
-================
-users
-{
-        "acknowledged" : true,
-        "insertedIds" : [
-                ObjectId("643030cb121f565307243e3a"),
-                ObjectId("643030cb121f565307243e3b"),
-                ObjectId("643030cb121f565307243e3c")
-        ]
-}
-{
-        "numIndexesBefore" : 1,
-        "numIndexesAfter" : 2,
-        "createdCollectionAutomatically" : false,
-        "commitQuorum" : "votingMembers",
-        "ok" : 1,
-        "$clusterTime" : {
-                "clusterTime" : Timestamp(1680879819, 10),
-                "signature" : {
-                        "hash" : BinData(0,"+xm50kdz6gX2Rwfm7MCBydCrqN8="),
-                        "keyId" : NumberLong("7219236637505486850")
-                }
-        },
-        "operationTime" : Timestamp(1680879819, 10)
-}
-bye
-I have no name!@mongodb-0:/$ mongo --host mongodb-headless.mongodb.svc.cluster.local -u root -p  neni5xFCLUBJ0Ui0pfor --authenticationDatabase admin < /tmp/catalogue.js 
-MongoDB shell version v5.0.8
-connecting to: mongodb://mongodb-headless.mongodb.svc.cluster.local:27017/?authSource=admin&compressors=disabled&gssapiServiceName=mongodb
-Implicit session: session { "id" : UUID("94ff4d86-93bb-4b2d-b73d-352c75066660") }
-MongoDB server version: 5.0.8
-================
-Warning: the "mongo" shell has been superseded by "mongosh",
-which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
-an upcoming release.
-For installation instructions, see
-https://docs.mongodb.com/mongodb-shell/install/
-================
-catalogue
-{
-        "acknowledged" : true,
-        "insertedIds" : [
-                ObjectId("643030d9f64443a6cfd8cfaa"),
-                ObjectId("643030d9f64443a6cfd8cfab"),
-                ObjectId("643030d9f64443a6cfd8cfac"),
-                ObjectId("643030d9f64443a6cfd8cfad"),
-                ObjectId("643030d9f64443a6cfd8cfae"),
-                ObjectId("643030d9f64443a6cfd8cfaf"),
-                ObjectId("643030d9f64443a6cfd8cfb0"),
-                ObjectId("643030d9f64443a6cfd8cfb1"),
-                ObjectId("643030d9f64443a6cfd8cfb2"),
-                ObjectId("643030d9f64443a6cfd8cfb3"),
-                ObjectId("643030d9f64443a6cfd8cfb4")
-        ]
-}
-{
-        "numIndexesBefore" : 1,
-        "numIndexesAfter" : 2,
-        "createdCollectionAutomatically" : false,
-        "commitQuorum" : "votingMembers",
-        "ok" : 1,
-        "$clusterTime" : {
-                "clusterTime" : Timestamp(1680879834, 3),
-                "signature" : {
-                        "hash" : BinData(0,"PJoSAmt6rubRuHYUnXOdxiRd/ZE="),
-                        "keyId" : NumberLong("7219236637505486850")
-                }
-        },
-        "operationTime" : Timestamp(1680879834, 3)
-}
-{
-        "numIndexesBefore" : 2,
-        "numIndexesAfter" : 3,
-        "createdCollectionAutomatically" : false,
-        "commitQuorum" : "votingMembers",
-        "ok" : 1,
-        "$clusterTime" : {
-                "clusterTime" : Timestamp(1680879834, 9),
-                "signature" : {
-                        "hash" : BinData(0,"PJoSAmt6rubRuHYUnXOdxiRd/ZE="),
-                        "keyId" : NumberLong("7219236637505486850")
-                }
-        },
-        "operationTime" : Timestamp(1680879834, 9)
-}
-bye[g]
 
-
+================
 
 
 
@@ -287,39 +209,33 @@ db.users.createIndex(
 );
 	
 
-MySQL
-
+# MySQL
 
 Get the root password from secret manager secret dev/squareops/mysql 
 
-
 Exec into mysql pod and run : 
+
 curl -o /tmp/10-dump.sq.gz https://github.com/instana/robot-shop/blob/master/mysql/scripts/10-dump.sql.gz?raw=true
+
 curl -o /tmp/20-ratings.sql  https://raw.githubusercontent.com/instana/robot-shop/master/mysql/scripts/20-ratings.sql
-
-
-
 
 mysql -uroot -p63hnfYGhj2ssnAdiVp4q < /tmp/20-ratings.sql
 mysql -uroot -p63hnfYGhj2ssnAdiVp4q -e “create database cities”  >> double quotes are interpreted differently on shell when copied from doc . Copy to text editor first 
+
 zcat /tmp/10-dump.sql.gz | mysql -uroot -p63hnfYGhj2ssnAdiVp4q cities 
-
-
-
-
-
-
 
 
 1. In a terminal (create image)
 kubectl run mysql-client --image=mysql:5.7 -it --rm --restart=Never -- /bin/bash
-	2. In another Terminal, copy dump. The Dump file is stored here in AWS SKAF account
-kubectl cp 10-dump.sql.gz mysql-client:/
-	3. exec to mysql and login
-  
 
+2. In another Terminal, copy dump. The Dump file is stored here in AWS SKAF account
+kubectl cp 10-dump.sql.gz mysql-client:/
+
+3. exec to mysql and login
 mysql -u root -p
-	   1. Enter password (get password from AWS Secrets)
+	   
+	Enter password (get password from AWS Secrets)
+	
 4. Run bellow commands
 CREATE DATABASE ratings
 DEFAULT CHARACTER SET 'utf8';
