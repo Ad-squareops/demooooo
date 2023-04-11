@@ -129,19 +129,17 @@ MongoDB
   
 
 Execute following commands in the shell:
-
-	2. Run command in mongo db shell
-
+2. Run command in mongo db shell
 
 curl -o /tmp/catalogue.js https://raw.githubusercontent.com/instana/robot-shop/master/mongo/catalogue.js 
+
 curl -o /tmp/users.js https://raw.githubusercontent.com/instana/robot-shop/master/mongo/users.js
+
 mongo --host mongodb-headless.mongodb.svc.cluster.local -u root -p --authenticationDatabase admin < /tmp/catalogue.js
+
 mongo --host mongodb-headless.mongodb.svc.cluster.local -u root -p --authenticationDatabase admin < /tmp/users.js
 
-
-   1. Enter password (get password from AWS Secrets Manager’s secret dev/squareops/mongodb)
-
-
+1. Enter password (get password from AWS Secrets Manager’s secret dev/squareops/mongodb)
 
 
 I have no name!@mongodb-0:/$ mongo --host mongodb-headless.mongodb.svc.cluster.local -u root -p  neni5xFCLUBJ0Ui0pfor --authenticationDatabase admin < /tmp/users.js
