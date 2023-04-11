@@ -1,4 +1,5 @@
-Demo Setup Convert this doc to readme Handle the case where domain name
+## Demo Setup 
+Convert this doc to readme Handle the case where domain name
 needs to be changed . Use tfvars if needed
 
 Prerequisites Only for setting up a demo in a new AWS Account. This has
