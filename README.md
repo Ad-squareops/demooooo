@@ -289,14 +289,6 @@ Now, click on Connect and ensure connection status is successful.
             1. PRUNE RESOURCES
             2. SELF HEAL
             3. AUTO-CREATE NAMESPACE
-  
-
-  
-  
-  
-
-
-
       4. In Source
          1. Give Repository URL from dropdown
          2. Revision: qa
@@ -305,7 +297,7 @@ Now, click on Connect and ensure connection status is successful.
          1. Select cluster URL from dropdown list
          2. Namespace: roboshop
       6. In Helm, 
-1. Values Files: env/demo/values.yaml (Press enter after entering this values for ArgoCD to confirm selection)
+         1. Values Files: env/demo/values.yaml (Press enter after entering this values for ArgoCD to confirm selection)
 
 
 
@@ -323,16 +315,15 @@ demo/web and demo/cart require no secret
 Access Robot-shop Application: https://roboshop.demo.skaf.squareops.in/
 
 
-Check CICD implementation
-   1. Push/Make changes web application git repository that will trigger the pipeline automatically and send a notification on slack for each success and failure along with this, it will trigger Argocd to update its application with latest image.
+# Check CICD implementation
+
+1. Push/Make changes web application git repository (https://gitlab.com/sq-ia/ref/msa-app/web/-/blob/demo/static/splash.html) that will trigger the pipeline automatically and send a notification on slack for each success and failure along with this, it will trigger Argocd to update its application with latest image.
 
 
-
-
-Cleanup
+# Cleanup
   
 
-SKAF Demo Checklist
+# SKAF Demo Checklist
    * Base Setup
    * Network Setup
    * EKS setup
@@ -368,12 +359,3 @@ SKAF Demo Checklist
    * RabbitMQ
    * Check Jenkins Webhook integration in GitLab Roboshop Application
    * Check CICD by manually changing in any microservices
-
-
-[a]Module app is dependent on module k8s. Domain mapping of Route53 records to Load balancer process takes place in k8s module.
-[b]I don't think this is needed
-[c]Pending to review . Not sure what exactly to be shown from Demo purpose. Even ELK may not be ready for demo .
-[d]Hold this step for later, once management services are configured
-[e]how does this make sure that we are logging into primary always ? does this headless service routes to primary instance only ?
-[f]This endpoint resolves to pods mongo master and slave pods. However, when connecting to this endpoint, connection is passed over to master
-[g]Check with rohit if db loaded successfully
