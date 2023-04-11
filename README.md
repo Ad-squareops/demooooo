@@ -225,18 +225,23 @@ mysql -uroot -p63hnfYGhj2ssnAdiVp4q -e “create database cities”  >> double q
 zcat /tmp/10-dump.sql.gz | mysql -uroot -p63hnfYGhj2ssnAdiVp4q cities 
 
 
+
 1. In a terminal (create image)
+
 kubectl run mysql-client --image=mysql:5.7 -it --rm --restart=Never -- /bin/bash
 
 2. In another Terminal, copy dump. The Dump file is stored here in AWS SKAF account
+
 kubectl cp 10-dump.sql.gz mysql-client:/
 
 3. exec to mysql and login
+
 mysql -u root -p
 	   
-	Enter password (get password from AWS Secrets)
+Enter password (get password from AWS Secrets)
 	
 4. Run bellow commands
+
 CREATE DATABASE ratings
 DEFAULT CHARACTER SET 'utf8';
 USE ratings;
@@ -252,9 +257,12 @@ create database cities;
 
 
 5. Now go to (create image) terminal of point 1 and run
+
 zcat 10-dump.sql.gz | mysql -h  mysqldb-primary.mysqldb.svc.cluster.local -u root -p cities
-	Jenkins webhook Configuration in Gitlab
+
+# Jenkins webhook Configuration in Gitlab
 Open gitlab and navigate to Reference Architecture-> msa-ref-roboshop(https://gitlab.com/sq-ia/ref/msa-app)
+
 1. Add jenkins webhook  in each microservice application
    1. Go to application> settings> integration > jenkins
       1. Add Jenkins server url: https://jenkins.demo.skaf.squareops.in
@@ -269,12 +277,13 @@ Open gitlab and navigate to Reference Architecture-> msa-ref-roboshop(https://gi
 
 # ArgoCD
 Login to Argocd (http://argo.demo.skaf.squareops.in) (get credentials and URL from K8s Output)
-1. Create Repository
-   a. Browse to Settings on the left side bar, click on Repositories, Click CONNECT REPO USING HTTPS
-        i. Add the following configuration:
-		URL: https://gitlab.com/sq-ia/ref/msa-app/helm.git
-		Username: gitlab+deploy-token-1401129
-		Password: NySyabsEnjANE5ynp7-y
+2. Create Repository
+   1. Browse to Settings on the left side bar, click on Repositories, Click CONNECT REPO USING HTTPS
+      1. Add the following configuration
+         
+	 URL: https://gitlab.com/sq-ia/ref/msa-app/helm.git
+         Username: gitlab+deploy-token-1401129
+         Password: NySyabsEnjANE5ynp7-y		
   
 
 Now, click on Connect and ensure connection status is successful.
