@@ -293,7 +293,7 @@ db.users.createIndex(
 Get the root password from secret manager secret dev/squareops/mysql 
 
 Exec into mysql pod and run : 
-
+```
 curl -o /tmp/10-dump.sq.gz https://github.com/instana/robot-shop/blob/master/mysql/scripts/10-dump.sql.gz?raw=true
 
 curl -o /tmp/20-ratings.sql  https://raw.githubusercontent.com/instana/robot-shop/master/mysql/scripts/20-ratings.sql
@@ -302,7 +302,7 @@ mysql -uroot -p63hnfYGhj2ssnAdiVp4q < /tmp/20-ratings.sql
 mysql -uroot -p63hnfYGhj2ssnAdiVp4q -e “create database cities”  >> double quotes are interpreted differently on shell when copied from doc . Copy to text editor first 
 
 zcat /tmp/10-dump.sql.gz | mysql -uroot -p63hnfYGhj2ssnAdiVp4q cities 
-
+```
 
 
 1. In a terminal (create image)
