@@ -1,9 +1,10 @@
-Demo Setup
+# Demo Setup
+
 Convert this doc to readme 
 Handle the case where domain name needs to be changed . Use tfvars if needed 
 
 
-Prerequisites
+# Prerequisites
 Only for setting up a demo in a new AWS Account. This has already been configured in aws-skaf account us-east-1 region
 
 
@@ -14,10 +15,11 @@ Only for setting up a demo in a new AWS Account. This has already been configure
 5. Access to Squareops Terraform Cloud of Skaf Demo Project in squareops-technologies organization
 
 
-Estimated time for this activity 
+# Estimated time for this activity 
 Min : 2h 
 Start the setup 6h before the demo . We will have significant data in logs and metrics services. Also we will have sufficient time to fix in case of any unexpected issues for Demo Setup
-Deployment with terraform cloud
+
+# Deployment with terraform cloud
 Workspaces  are pre-configured in Terraform Cloud. 
 * Terraform Cloud Organization:  squareops-technologies
 * Project: Skaf Demo
@@ -26,19 +28,13 @@ Workspaces  are pre-configured in Terraform Cloud.
 Apply the 3 modules(workspaces) in following order
 
 
-1. Skaf-demo-01-aws
+1. Skaf-demo-01-aws (https://app.terraform.io/app/squareops-technologies/workspaces/skaf-demo-01-aws)
 This creates the AWS VPC , EKS cluster and bootstraps the cluster 
 Navigate to module → Actions→ Start new run
   
-
-
-
-
-
 NOTE: Steps(modules) 2 and 3 can be triggered in parallel as they are independent from each other[a]
 
-
-2. Skaf-demo-02-k8s
+2. Skaf-demo-02-k8s (https://app.terraform.io/app/squareops-technologies/workspaces/skaf-demo-02-k8s)
 This execution deploys management services inside the EKS cluster
 * Rancher
 * Jenkins
@@ -57,43 +53,24 @@ Note the output values of K8s module. These values should be used to login into 
 6. Sonarqube: sonar.demo.skaf.squareops.in
 
 
-
-
-
-
-
-
-
-
-
-
 Configure Services using Manual Steps
 Now that deployment is completed for all stacks , we need to configure certain services manually 
 This includes
 1. Adding jenkins webhook to sonarqube
 2. Configure sonarqube connection in Jenkins ( The pipeline jobs configuration is restored from pre-defined backup as a part of terraform runs already ) 
 3. Configurations in Kibana 
+
+
 Sonarqube
-Login to Sonarqube and perform following steps
+Login to Sonarqube and perform following steps (http://sonar.demo.skaf.squareops.in)
+1. Create token and save for later use:- 
+go to profile > my account > security > Generate token
+Token name: SonarqubeScanner 
 
-
-1. Create token and save for later use:- go to profile > my account > security > Generate token
-Token name: SonarqubeScanner
-  
-
-
-
-2. Update Jenkins Credential sonar with Sonarqube token created in Step 1.Go to  Manage Jenkins > Manage Credentials > Click on Sonar > Update Password
-
-
-  
-
-
-
-
+2. Update Jenkins (http://jenkins.demo.skaf.squareops.in) Credential sonar with Sonarqube token created in 
+Step 1.Go to  Manage Jenkins > Manage Credentials > Click on Sonar > Update Password
 
 3. Create webhook
-
 
 In main menu bar go to Administration>Configuration>webhooks>create new
 Webhook name: SonarqubeScanner
@@ -102,36 +79,20 @@ Provide Webhook Name and URL as  jenkinsurl/sonarqube-webhook/. In this case htt
 
 
 
-
+# Jenkins
+Login to Jenkins (http://jenkins.demo.skaf.squareops.in) and ensure Jenkins pipelines and Credentials are present. 
   
-
-
-
-Jenkins
-Login to Jenkins and ensure Jenkins pipelines and Credentials are present. 
-  
-
-
-
 If pipelines and credentials are not present, delete Jenkins pod from  Rancher . The pod will be automatically re-created and pipelines will reflect in Jenkins dashboard after refreshing in dashboard. This happens when the restored backup is delayed and jenkins reload is needed.
 
-
-  
-
-
-
 Verify sonarqube configuration in Jenkins
-
-
 1. Go to manage jenkins>configure system-> SonarQube Installations . verify the Sonarqube url is set correctly as per the demo urls: https://sonar.demo.skaf.squareops.in
+
+2. Go to Manage Jenkins> Global Tool Configuration>sonarqube scanner and verify the correct version present.
+
+
   
 
-2. Go to Manage Jenkins> Global Tool Configuration>sonarqube scanner and verify the correct version present[b]
-
-
-  
-
-Grafana
+# Grafana
 Star important dashboards
 
 
@@ -153,18 +114,18 @@ Verify the data in starred dashboards. Disable auto-refresh and set the time dur
 
 
 
+# Kibana
+Follow ECK documentation for snapshot, dashboard and home page ECK https://docs.google.com/document/d/1jJziJN_FMunpY5t87z8D-Q3VMNV2FnN96AmyrxpN9FM/edit?usp=sharing 
 
-Kibana
-Follow ECK documentation[c] for snapshot, dashboard and home page ECK https://docs.google.com/document/d/1jJziJN_FMunpY5t87z8D-Q3VMNV2FnN96AmyrxpN9FM/edit?usp=sharing 
-Application Deployment
-3. skaf-demo-03-app
+
+# Application Deployment
+3. skaf-demo-03-app (https://app.terraform.io/app/squareops-technologies/workspaces/skaf-demo-03-app)
 This job deploys the sample app ( roboshop ) to running cluster. Predefined endpoint is [d]
 Deploy the load test service also to demonstrate system under nominal load
+
 Add DB Dump
-
-
 MongoDB
-1. Execute Shell in mongodb-0 pod using Rancher
+1. Execute Shell in mongodb-0 pod using Rancher (http://rancher.demo.skaf.squareops.in)
   
 
 Execute following commands in the shell:[e][f]
