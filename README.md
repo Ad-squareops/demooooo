@@ -128,8 +128,7 @@ MongoDB
 1. Execute Shell in mongodb-0 pod using Rancher (http://rancher.demo.skaf.squareops.in)
   
 
-Execute following commands in the shell:[e][f]
-
+Execute following commands in the shell:
 
 	2. Run command in mongo db shell
 
