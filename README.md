@@ -267,14 +267,14 @@ Open gitlab and navigate to Reference Architecture-> msa-ref-roboshop(https://gi
 
 
 
-ArgoCD
-Login to Argocd (get credentials and URL from K8s Output)
+# ArgoCD
+Login to Argocd (http://argo.demo.skaf.squareops.in) (get credentials and URL from K8s Output)
 1. Create Repository
-1. Browse to Settings on the left side bar, click on Repositories, Click CONNECT REPO USING HTTPS
-i. Add the following configuration:
-URL: https://gitlab.com/sq-ia/ref/msa-app/helm.git
-Username: gitlab+deploy-token-1401129
-Password: NySyabsEnjANE5ynp7-y
+   a. Browse to Settings on the left side bar, click on Repositories, Click CONNECT REPO USING HTTPS
+        i. Add the following configuration:
+		URL: https://gitlab.com/sq-ia/ref/msa-app/helm.git
+		Username: gitlab+deploy-token-1401129
+		Password: NySyabsEnjANE5ynp7-y
   
 
 Now, click on Connect and ensure connection status is successful.
